@@ -47,8 +47,6 @@ int main() {
 	return 0;
 }
 
-uint8_t gameTime = 0;
-
 void initScreen() {
 	screen = new Screen(SECTION_HEIGHT, SECTION_WIDTH, SECTIONS_HEIGHT, SECTIONS_WIDTH);
 	game = new SnakeGame(SECTION_HEIGHT * SECTIONS_HEIGHT, SECTION_WIDTH * SECTIONS_WIDTH);
@@ -98,57 +96,8 @@ uint8_t getOffset(uint8_t &offset, uint8_t height);
 ISR(TIMER1_COMPA_vect) {
 	game++;
 	screen->loadImage([](uint8_t** buffer) {
-		uint8_t height = screen->getHeight();
-		uint8_t offset = gameTime % height;
-
-		buffer[offset][1] = 1;
-		buffer[offset][2] = 1;
-		buffer[offset][5] = 1;
-		buffer[offset][6] = 1;
-
-		offset = getOffset(offset, height);
-
-		buffer[offset][0] = 1;
-		buffer[offset][3] = 1;
-		buffer[offset][4] = 1;
-		buffer[offset][7] = 1;
-
-		offset = getOffset(offset, height);
-
-		buffer[offset][0] = 1;
-		buffer[offset][3] = 1;
-		buffer[offset][4] = 1;
-		buffer[offset][7] = 1;
-
-		offset = getOffset(offset, height);
-
-		buffer[offset][1] = 1;
-		buffer[offset][2] = 1;
-		buffer[offset][5] = 1;
-		buffer[offset][6] = 1;
-
-		offset = getOffset(offset, height);
-
-		buffer[offset][2] = 1;
-		buffer[offset][5] = 1;
-
-		offset = getOffset(offset, height);
-
-		buffer[offset][2] = 1;
-		buffer[offset][5] = 1;
-
-		offset = getOffset(offset, height);
-
-		buffer[offset][2] = 1;
-		buffer[offset][5] = 1;
-
-		offset = getOffset(offset, height);
-
-		buffer[offset][3] = 1;
-		buffer[offset][4] = 1;
-
+		game->buildImage(buffer);
 	});
-	gameTime++;
 }
 
 uint8_t getOffset(uint8_t &offset, uint8_t height) {
