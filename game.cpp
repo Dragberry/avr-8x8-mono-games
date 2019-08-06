@@ -2,7 +2,7 @@
 
 Game::~Game() {}
 
-Game& Game::operator ++() {
+Game& Game::operator++ () {
 	time++;
 	increment();
 	return *this;

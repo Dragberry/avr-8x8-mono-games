@@ -21,7 +21,7 @@ void SnakeGame::increment() {
 void SnakeGame::buildImage(uint8_t** image) {
 	for (uint8_t row = 0; row < height; row++) {
 		for (uint8_t cell = 0; cell < width; cell++) {
-			image[row][cell] = (row == y && row == x ? 1 : 0);
+			image[row][cell] = row == y && cell == x ? 1 : 0;
 		}
 	}
 }

@@ -94,7 +94,7 @@ void initGameTimer() {
 uint8_t getOffset(uint8_t &offset, uint8_t height);
 
 ISR(TIMER1_COMPA_vect) {
-	game++;
+	++(*game);
 	screen->loadImage([](uint8_t** buffer) {
 		game->buildImage(buffer);
 	});

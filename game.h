@@ -13,7 +13,7 @@ protected:
 public:
 	virtual ~Game();
 
-	Game& operator ++();
+	Game& operator++ ();
 
 	virtual void buildImage(uint8_t** image) = 0;
 };
