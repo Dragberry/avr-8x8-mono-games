@@ -37,11 +37,16 @@ Direction Snake::getDirection() {
 }
 
 void Snake::move() {
-	Direction previousDirection;
+	Direction currentDirection;
+	Direction nextDirection;
 	for (uint16_t n = 0; n < length; n++) {
-		previousDirection = body[n].direction;
-		body[n].direction = n == 0 ? direction : previousDirection;
-		switch (body[n].direction) {
+		if (n == 0) {
+			nextDirection = direction;
+		} else {
+			nextDirection = currentDirection;
+		}
+		currentDirection = body[n].direction;
+		switch (nextDirection) {
 		case Up:
 			moveUp(&(body[n]));
 			break;
@@ -55,6 +60,7 @@ void Snake::move() {
 			moveLeft(&(body[n]));
 			break;
 		}
+		body[n].direction = nextDirection;
 	}
 }
 

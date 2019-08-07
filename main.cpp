@@ -87,7 +87,7 @@ ISR(TIMER0_COMP_vect) {
 }
 
 void initGameTimer() {
-	TCCR1B |= (1 << WGM12) | (1 << CS12) | (0 << CS11) | (0 << CS10);
+	TCCR1B |= (1 << WGM12) | (1 << CS12) | (0 << CS11) | (1 << CS10);
 	TIMSK |= (1 << OCIE1A);
 	OCR1A = 0xC35;
 }
