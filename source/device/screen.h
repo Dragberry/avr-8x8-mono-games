@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#include "../../source/common/utils.h"
+
 class Screen {
 
 private:

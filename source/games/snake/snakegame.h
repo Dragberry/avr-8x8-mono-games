@@ -1,7 +1,8 @@
 #ifndef SNAKEGAME_H_
 #define SNAKEGAME_H_
 
-#include "game.h"
+#include "../game.h"
+#include "snake.h"
 
 class SnakeGame : public Game {
 
@@ -9,8 +10,7 @@ private:
 	uint8_t height;
 	uint8_t width;
 
-	uint8_t x = 0;
-	uint8_t y = 0;
+	Snake* snake;
 
 public:
 	SnakeGame(uint8_t height, uint8_t width);

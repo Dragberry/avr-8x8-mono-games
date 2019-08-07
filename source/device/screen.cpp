@@ -1,4 +1,4 @@
-#include "screen.h"
+#include "../../source/device/screen.h"
 
 Screen::Screen(uint8_t sectionHeight, uint8_t sectionWidth, uint8_t sectionsHeight, uint8_t sectionsWidth) {
 	this->sectionHeight = sectionHeight;

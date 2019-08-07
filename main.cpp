@@ -1,9 +1,10 @@
 #include <stdint.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "screen.h"
-#include "game.h"
-#include "snakegame.h"
+
+#include "source/device/screen.h"
+#include "source/games/game.h"
+#include "source/games/snake/snakegame.h"
 
 #define FREQUENCY 8000000
 
@@ -75,7 +76,7 @@ void sendByte(const uint8_t &data) {
 void initScreenTimer() {
 	TCCR0 |= (1 << WGM01) | (1 << CS02) | (0 << CS01) | (0 << CS00);
 	TIMSK |= (1 << OCIE0);
-	OCR0 = 0x3F;
+	OCR0 = 0x0F;
 }
 
 
