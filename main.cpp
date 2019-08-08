@@ -32,6 +32,7 @@ void confirmSPI();
 void sendByte(const uint8_t &data);
 
 void initScreen();
+void drawScene();
 
 Screen* screen;
 Game* game;
@@ -51,6 +52,13 @@ int main() {
 void initScreen() {
 	screen = new Screen(SECTION_HEIGHT, SECTION_WIDTH, SECTIONS_HEIGHT, SECTIONS_WIDTH);
 	game = new SnakeGame(SECTION_HEIGHT * SECTIONS_HEIGHT, SECTION_WIDTH * SECTIONS_WIDTH);
+	drawScene();
+}
+
+void drawScene() {
+	screen->loadImage([](uint8_t** buffer) {
+		game->buildImage(buffer);
+	});
 }
 
 void initSPI() {
@@ -76,7 +84,7 @@ void sendByte(const uint8_t &data) {
 void initScreenTimer() {
 	TCCR0 |= (1 << WGM01) | (1 << CS02) | (0 << CS01) | (0 << CS00);
 	TIMSK |= (1 << OCIE0);
-	OCR0 = 0x0F;
+	OCR0 = 0x3F;
 }
 
 
@@ -87,7 +95,7 @@ ISR(TIMER0_COMP_vect) {
 }
 
 void initGameTimer() {
-	TCCR1B |= (1 << WGM12) | (1 << CS12) | (0 << CS11) | (1 << CS10);
+	TCCR1B |= (1 << WGM12) | (1 << CS12) | (0 << CS11) | (0 << CS10);
 	TIMSK |= (1 << OCIE1A);
 	OCR1A = 0xC35;
 }
@@ -96,9 +104,7 @@ uint8_t getOffset(uint8_t &offset, uint8_t height);
 
 ISR(TIMER1_COMPA_vect) {
 	++(*game);
-	screen->loadImage([](uint8_t** buffer) {
-		game->buildImage(buffer);
-	});
+	drawScene();
 }
 
 uint8_t getOffset(uint8_t &offset, uint8_t height) {

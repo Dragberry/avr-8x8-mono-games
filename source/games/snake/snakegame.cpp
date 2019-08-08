@@ -6,7 +6,7 @@
 SnakeGame::SnakeGame(uint8_t height, uint8_t width) {
 	this->height = height;
 	this->width = width;
-	this->snake = new Snake(height, width, 3, Direction::Up);
+	this->snake = new Snake(height, width, 4, Direction::Right);
 }
 
 SnakeGame::~SnakeGame() {
@@ -56,7 +56,7 @@ void SnakeGame::increment() {
 void SnakeGame::buildImage(uint8_t** image) {
 	for (uint8_t row = 0; row < height; row++) {
 		for (uint8_t cell = 0; cell < width; cell++) {
-			image[cell][row] = snake->isHere(row, cell) ? 1 : 0;
+			image[row][cell] = snake->isHere(row, cell) ? 1 : 0;
 		}
 	}
 }

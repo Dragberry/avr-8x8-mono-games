@@ -23,10 +23,6 @@ public:
 	void setDirection(Direction direction);
 	Direction getDirection();
 	void move();
-	void moveUp(SnakeSection* section);
-	void moveRight(SnakeSection* section);
-	void moveDown(SnakeSection* section);
-	void moveLeft(SnakeSection* section);
 };
 
 #endif

@@ -7,9 +7,9 @@ Snake::Snake(uint8_t fieldHeight, uint8_t fieldWidth, uint8_t initLength, Direct
 	this->length = initLength;
 	this->direction = direction;
 	this->body = new SnakeSection[maxLength];
-	for (uint16_t n = 0; n < length; n++) {
+	for (uint16_t n = length - 1; n != 0; n--) {
 		body[n].x = n;
-		body[n].y= 0;
+		body[n].y = 0;
 		body[n].direction = direction;
 	}
 
@@ -37,71 +37,17 @@ Direction Snake::getDirection() {
 }
 
 void Snake::move() {
+	Direction leaderDirection = direction;
 	Direction currentDirection;
-	Direction nextDirection;
-	for (uint16_t n = 0; n < length; n++) {
-		if (n == 0) {
-			nextDirection = direction;
+	for (uint16_t n = length; n != 0; n--) {
+		if (n == length) {
+			currentDirection = direction;
 		} else {
-			nextDirection = currentDirection;
+			currentDirection = leaderDirection;
 		}
-		currentDirection = body[n].direction;
-		switch (nextDirection) {
-		case Up:
-			moveUp(&(body[n]));
-			break;
-		case Right:
-			moveRight(&(body[n]));
-			break;
-		case Down:
-			moveDown(&(body[n]));
-			break;
-		case Left:
-			moveLeft(&(body[n]));
-			break;
-		}
-		body[n].direction = nextDirection;
+		SnakeSection* section = &body[n - 1];
+		leaderDirection = section->direction;
+		section->direction = currentDirection;
+		section->move(fieldHeight - 1, fieldWidth - 1);
 	}
-}
-
-void Snake::moveUp(SnakeSection* section) {
-	uint8_t y = section->y;
-	if (y == 0) {
-		y = fieldHeight - 1;
-	} else {
-		y--;
-	}
-	section->y = y;
-}
-
-void Snake::moveRight(SnakeSection* section) {
-	uint8_t x = section->x;
-	if (x == fieldWidth - 1) {
-		x = 0;
-	} else {
-		x++;
-	}
-	section->x = x;
-
-}
-
-void Snake::moveDown(SnakeSection* section) {
-	uint8_t y = section->y;
-	if (y == fieldHeight - 1) {
-		y = 0;
-	} else {
-		y++;
-	}
-	section->y = y;
-
-}
-
-void Snake::moveLeft(SnakeSection* section) {
-	uint8_t x = section->x;
-	if (x == 0) {
-		x = fieldWidth - 1;
-	} else {
-		x--;
-	}
-	section->x = x;
 }
