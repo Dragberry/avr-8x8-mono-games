@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "direction.h"
+#include "food.h"
 #include "snakesection.h"
 
 class Snake {
@@ -13,6 +14,7 @@ private:
 	uint16_t maxLength;
 	uint16_t length;
 	SnakeSection* body;
+	SnakeSection tail;
 	Direction direction;
 
 public:
@@ -23,6 +25,7 @@ public:
 	void setDirection(Direction direction);
 	Direction getDirection();
 	void move();
+	bool eat(const Food &food);
 };
 
 #endif

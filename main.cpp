@@ -97,7 +97,7 @@ ISR(TIMER0_COMP_vect) {
 void initGameTimer() {
 	TCCR1B |= (1 << WGM12) | (1 << CS12) | (0 << CS11) | (0 << CS10);
 	TIMSK |= (1 << OCIE1A);
-	OCR1A = 0xC35;
+	OCR1A = 0xB35;
 }
 
 uint8_t getOffset(uint8_t &offset, uint8_t height);

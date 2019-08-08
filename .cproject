@@ -109,7 +109,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="Source/games/snake|Source/games|Source/device|Source/common|snake|common|device|games|source|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="food.cpp|Source/games/snake|Source/games|Source/device|Source/common|snake|common|device|games|source|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         						
                         <entry excluding="common|device|games|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source"/>
                         						
@@ -235,7 +235,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="Source/games/snake|Source/games|Source/device|Source/common|snake|common|device|games|source|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="food.cpp|Source/games/snake|Source/games|Source/device|Source/common|snake|common|device|games|source|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         						
                         <entry excluding="common|device|games|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source"/>
                         						
