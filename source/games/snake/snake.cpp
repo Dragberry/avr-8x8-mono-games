@@ -14,7 +14,6 @@ Snake::Snake(uint8_t fieldHeight, uint8_t fieldWidth, uint8_t initLength, Direct
 		section->direction = direction;
 	}
 	this->tail = body[length - 1];
-
 }
 
 Snake::~Snake() {
@@ -59,8 +58,7 @@ void Snake::move() {
 }
 
 bool Snake::eat(const Food &food) {
-	SnakeSection* head = &body[0];
-	if (food.x == head->x && food.y == head->y) {
+	if (food.x == body[0].x && food.y == body[0].y) {
 		body[length++] = tail;
 		return true;
 	}

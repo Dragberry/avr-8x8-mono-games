@@ -13,9 +13,10 @@ private:
 	uint8_t fieldWidth;
 	uint16_t maxLength;
 	uint16_t length;
+	Direction direction;
 	SnakeSection* body;
 	SnakeSection tail;
-	Direction direction;
+
 
 public:
 	Snake(uint8_t fieldHeight, uint8_t fieldWidth, uint8_t initLength, Direction direction);
