@@ -27,6 +27,9 @@ public:
 	Direction getDirection();
 	void move();
 	bool eat(const Food &food);
+	uint16_t getLength();
+	SnakeSection* getHead();
+	SnakeSection* getTail();
 };
 
 #endif

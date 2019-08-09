@@ -23,16 +23,23 @@
 #define SCREEN_WIDTH (SECTION_WIDTH * SECTIONS_WIDTH)
 #define SCREEN_HEIGHT (SECTION_HEIGHT * SECTIONS_HEIGHT)
 
-void initScreenTimer();
-void initGameTimer();
 void initSPI();
-
 void resetSPI();
 void confirmSPI();
-void sendByte(const uint8_t &data);
+void sendByte(const uint8_t data);
 
 void initScreen();
+void initScreenTimer();
+void stopScreenTimer();
+void shutDownScreen();
+
+void initGameTimer();
+void initGame();
+void stopGameTimer();
+void stopGame();
+
 void drawScene();
+
 
 Screen* screen;
 Game* game;
@@ -41,24 +48,35 @@ int main() {
 	initSPI();
 	initScreen();
 	initScreenTimer();
+	initGame();
 	initGameTimer();
-	sei();
-	while(1);
+	drawScene();
 
-	delete screen;
+	sei();
+
+	while(1) {
+		screen->clear();
+		initGame();
+		initGameTimer();
+		while (game->isGoingOn());
+		stopGame();
+	}
+	shutDownScreen();
 	return 0;
 }
 
 void initScreen() {
 	screen = new Screen(SECTION_HEIGHT, SECTION_WIDTH, SECTIONS_HEIGHT, SECTIONS_WIDTH);
-	game = new SnakeGame(SECTION_HEIGHT * SECTIONS_HEIGHT, SECTION_WIDTH * SECTIONS_WIDTH);
-	drawScene();
 }
 
 void drawScene() {
 	screen->loadImage([](uint8_t** buffer) {
 		game->buildImage(buffer);
 	});
+}
+
+void initGame() {
+	game = new SnakeGame(SECTION_HEIGHT * SECTIONS_HEIGHT, SECTION_WIDTH * SECTIONS_WIDTH);
 }
 
 void initSPI() {
@@ -76,7 +94,7 @@ void confirmSPI() {
 	SPI_PORT |= (1 << SPI_SS);
 }
 
-void sendByte(const uint8_t &data) {
+void sendByte(const uint8_t data) {
 	SPDR = data;
 	while (!(SPSR & (1 << SPIF )));
 }
@@ -87,6 +105,11 @@ void initScreenTimer() {
 	OCR0 = 0x3F;
 }
 
+void stopScreenTimer() {
+	TCCR0 = 0;
+	TIMSK &= ~(1 << OCIE0);
+	OCR0 = 0;
+}
 
 ISR(TIMER0_COMP_vect) {
 	resetSPI();
@@ -100,13 +123,23 @@ void initGameTimer() {
 	OCR1A = 0xB35;
 }
 
-uint8_t getOffset(uint8_t &offset, uint8_t height);
+void stopGameTimer() {
+	TCCR1B = 0;
+	TIMSK &= ~(1 << OCIE1A);
+	OCR1A = 0;
+}
 
 ISR(TIMER1_COMPA_vect) {
 	++(*game);
 	drawScene();
 }
 
-uint8_t getOffset(uint8_t &offset, uint8_t height) {
-	return ++offset == height ? 0 : offset;
+void stopGame() {
+	stopGameTimer();
+	delete []game;
+}
+
+void shutDownScreen() {
+	stopScreenTimer();
+	delete []screen;
 }

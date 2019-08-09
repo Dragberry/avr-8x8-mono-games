@@ -4,6 +4,7 @@
 #include "snake.h"
 
 SnakeGame::SnakeGame(uint8_t height, uint8_t width) {
+	this->isImageBuilt = false;
 	this->height = height;
 	this->width = width;
 	this->snake = new Snake(height, width, 4, Direction::Right);
@@ -11,8 +12,12 @@ SnakeGame::SnakeGame(uint8_t height, uint8_t width) {
 }
 
 SnakeGame::~SnakeGame() {
-	delete snake;
 	delete food;
+	delete snake;
+}
+
+bool SnakeGame::isGoingOn() {
+	return snake->getLength() < 10;
 }
 
 void SnakeGame::placeFood() {
@@ -70,9 +75,18 @@ void SnakeGame::increment() {
 }
 
 void SnakeGame::buildImage(uint8_t** image) {
-	for (uint8_t row = 0; row < height; row++) {
-		for (uint8_t cell = 0; cell < width; cell++) {
-			image[row][cell] = snake->isHere(row, cell) || food->isHere(row, cell) ? 1 : 0;
+	if (isImageBuilt) {
+		image[food->y][food->x] = 1;
+		SnakeSection* head = snake->getHead();
+		image[head->y][head->x] = 1;
+		SnakeSection* tail = snake->getTail();
+		image[tail->y][tail->x] = 0;
+	} else {
+		for (uint8_t row = 0; row < height; row++) {
+			for (uint8_t cell = 0; cell < width; cell++) {
+				image[row][cell] = snake->isHere(row, cell) || food->isHere(row, cell) ? 1 : 0;
+			}
 		}
+		isImageBuilt = true;
 	}
 }

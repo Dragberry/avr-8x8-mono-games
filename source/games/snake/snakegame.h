@@ -8,6 +8,7 @@
 class SnakeGame : public Game {
 
 private:
+	bool isImageBuilt;
 	uint8_t height;
 	uint8_t width;
 
@@ -20,6 +21,8 @@ public:
 	SnakeGame(uint8_t height, uint8_t width);
 
 	~SnakeGame();
+
+	bool isGoingOn();
 
 	void increment();
 

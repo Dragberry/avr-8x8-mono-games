@@ -17,18 +17,14 @@ private:
 	uint8_t currentRow;
 	uint8_t** picture;
 
-	void reset();
-
 public:
 	Screen(uint8_t sectionHeight, uint8_t sectionWidth, uint8_t sectionsHeight, uint8_t sectionsWidth);
 	~Screen();
 
-	template <class L> void loadImage(L load) {
-		reset();
-		load(picture);
-	}
-
-	void drawRow(void (*sendByte)(const uint8_t &));
+	template <class L>
+	void loadImage(L load) { load(picture); }
+	void drawRow(void (*sendByte)(const uint8_t byte));
+	void clear();
 
 	uint8_t getHeight();
 	uint8_t getWidth();

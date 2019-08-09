@@ -24,7 +24,7 @@ Screen::~Screen() {
 	delete picture;
 }
 
-void Screen::reset() {
+void Screen::clear() {
 	for (uint8_t row = 0; row < height; row++) {
 		for (uint8_t cell = 0; cell < width; cell++) {
 			this->picture[row][cell] = 0;
@@ -32,10 +32,9 @@ void Screen::reset() {
 	}
 }
 
-void Screen::drawRow(void (*sendByte)(const uint8_t &)) {
-	for (uint8_t columnSection = 0; columnSection < sectionsWidth; columnSection++) {
+void Screen::drawRow(void (*sendByte)(const uint8_t byte)) {
+	for (uint8_t sectionOffset = 0; sectionOffset < width; sectionOffset += sectionWidth) {
 		uint8_t cellByte = 0xFF;
-		uint8_t sectionOffset = columnSection * sectionsWidth;
 		for (uint8_t cell = 0; cell < sectionWidth; cell++) {
 			cellByte &= ~(picture[currentRow][sectionOffset + cell] << (sectionWidth - 1 - cell));
 		}

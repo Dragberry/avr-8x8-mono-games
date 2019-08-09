@@ -64,3 +64,15 @@ bool Snake::eat(const Food &food) {
 	}
 	return false;
 }
+
+uint16_t Snake::getLength() {
+	return length;
+}
+
+SnakeSection* Snake::getHead() {
+	return &body[0];
+}
+
+SnakeSection* Snake::getTail() {
+	return &tail;
+}
