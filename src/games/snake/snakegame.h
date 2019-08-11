@@ -1,9 +1,9 @@
 #ifndef SNAKEGAME_H_
 #define SNAKEGAME_H_
 
-#include "../game.h"
-#include "snake.h"
 #include "food.h"
+#include "snake.h"
+#include "../game.h"
 
 class SnakeGame : public Game {
 
@@ -17,14 +17,16 @@ private:
 
 	void placeFood();
 
+protected:
+	void increment();
+	void onAction();
+
 public:
 	SnakeGame(uint8_t height, uint8_t width);
 
 	~SnakeGame();
 
 	bool isGoingOn();
-
-	void increment();
 
 	void buildImage(uint8_t** image);
 };

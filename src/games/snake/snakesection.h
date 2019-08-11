@@ -2,7 +2,8 @@
 #define SNAKESECTION_H_
 
 #include <stdint.h>
-#include  "direction.h"
+
+#include "direction.h"
 
 struct SnakeSection {
 

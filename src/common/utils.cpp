@@ -1,4 +1,4 @@
-#include "../../source/common/utils.h"
+#include "utils.h"
 
 void * operator new(size_t size) {
   return malloc(size);

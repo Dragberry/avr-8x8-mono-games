@@ -2,6 +2,7 @@
 #define SNAKE_H_
 
 #include <stdint.h>
+
 #include "direction.h"
 #include "food.h"
 #include "snakesection.h"
@@ -26,6 +27,8 @@ public:
 	void setDirection(Direction direction);
 	Direction getDirection();
 	void move();
+	void turnLeft();
+	void turnRight();
 	bool eat(const Food &food);
 	uint16_t getLength();
 	SnakeSection* getHead();

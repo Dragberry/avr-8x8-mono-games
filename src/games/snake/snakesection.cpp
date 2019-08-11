@@ -1,5 +1,5 @@
-#include "snakesection.h"
 #include "direction.h"
+#include "snakesection.h"
 
 void SnakeSection::move(const uint8_t vBorder, const uint8_t hBorder) {
 	switch (direction) {

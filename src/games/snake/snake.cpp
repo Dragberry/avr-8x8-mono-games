@@ -57,6 +57,40 @@ void Snake::move() {
 	}
 }
 
+void Snake::turnLeft() {
+	switch (direction) {
+	case Direction::Right:
+		direction = Direction::Up;
+		break;
+	case Direction::Down:
+		direction = Direction::Right;
+		break;
+	case Direction::Left:
+		direction = Direction::Down;
+		break;
+	default:
+		direction = Direction::Left;
+		break;
+	}
+}
+
+void Snake::turnRight() {
+	switch (direction) {
+	case Direction::Left:
+		direction = Direction::Up;
+		break;
+	case Direction::Up:
+		direction = Direction::Right;
+		break;
+	case Direction::Right:
+		direction = Direction::Down;
+		break;
+	default:
+		direction = Direction::Left;
+		break;
+	}
+}
+
 bool Snake::eat(const Food &food) {
 	if (food.x == body[0].x && food.y == body[0].y) {
 		body[length++] = tail;

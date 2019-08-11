@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#include "../../source/common/utils.h"
+#include "../common/utils.h"
 
 class Screen {
 

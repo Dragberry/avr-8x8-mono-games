@@ -109,17 +109,17 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="food.cpp|Source/games/snake|Source/games|Source/device|Source/common|snake|common|device|games|source|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="source/device|source/games/snake|source/games|source/common|snake|food.cpp|common|device|games|Source/device|Source/games|Source/common|snakegame|src|Source/games/snake" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         						
-                        <entry excluding="common|device|games|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source"/>
+                        <entry excluding="common|device|games|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
                         						
-                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/common"/>
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/common"/>
                         						
-                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/device"/>
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/device"/>
                         						
-                        <entry excluding="snake" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/games"/>
+                        <entry excluding="snake" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/games"/>
                         						
-                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/games/snake"/>
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/games/snake"/>
                         					
                     </sourceEntries>
                     				
@@ -235,17 +235,17 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="food.cpp|Source/games/snake|Source/games|Source/device|Source/common|snake|common|device|games|source|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="source/device|source/games/snake|source/games|source/common|snake|food.cpp|common|device|games|Source/device|Source/games|Source/common|snakegame|src|Source/games/snake" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         						
-                        <entry excluding="common|device|games|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source"/>
+                        <entry excluding="common|device|games|snakegame" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
                         						
-                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/common"/>
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/common"/>
                         						
-                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/device"/>
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/device"/>
                         						
-                        <entry excluding="snake" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/games"/>
+                        <entry excluding="snake" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/games"/>
                         						
-                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/games/snake"/>
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/games/snake"/>
                         					
                     </sourceEntries>
                     				

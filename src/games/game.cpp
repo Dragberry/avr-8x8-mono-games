@@ -1,4 +1,4 @@
-#include "../../source/games/game.h"
+#include "game.h"
 
 Game::~Game() {}
 

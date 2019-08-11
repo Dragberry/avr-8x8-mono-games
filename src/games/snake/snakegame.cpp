@@ -1,7 +1,6 @@
 #include "snakegame.h"
 
 #include <stdlib.h>
-#include "snake.h"
 
 SnakeGame::SnakeGame(uint8_t height, uint8_t width) {
 	this->isImageBuilt = false;
@@ -20,6 +19,15 @@ bool SnakeGame::isGoingOn() {
 	return snake->getLength() < 10;
 }
 
+void SnakeGame::onAction() {
+	if (buttons.C) {
+		snake->turnLeft();
+	}
+	if (buttons.B) {
+		snake->turnRight();
+	}
+}
+
 void SnakeGame::placeFood() {
 	uint8_t newX = rand() % width;
 	uint8_t newY = rand() % height;
@@ -32,42 +40,13 @@ void SnakeGame::placeFood() {
 }
 
 void SnakeGame::increment() {
-	if (time % 5  == 0) {
-		Direction direction = snake->getDirection();
-		if (rand() % 2 == 0) {
-			switch (direction) {
-			case Direction::Left:
-				direction = Direction::Up;
-				break;
-			case Direction::Up:
-				direction = Direction::Right;
-				break;
-			case Direction::Right:
-				direction = Direction::Down;
-				break;
-			default:
-				direction = Direction::Left;
-				break;
-			}
-		} else {
-			switch (direction) {
-				case Direction::Right:
-					direction = Direction::Up;
-					break;
-				case Direction::Down:
-					direction = Direction::Right;
-					break;
-				case Direction::Left:
-					direction = Direction::Down;
-					break;
-				default:
-					direction = Direction::Left;
-					break;
-				}
-		}
-
-		snake->setDirection(direction);
-	}
+//	if (time % 5  == 0) {
+//		if (rand() % 2 == 0) {
+//			snake->turnRight();
+//		} else {
+//			snake->turnLeft();
+//		}
+//	}
 	snake->move();
 	if (food == NULL || snake->eat(*food)) {
 		placeFood();
