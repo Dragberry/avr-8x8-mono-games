@@ -111,11 +111,7 @@ void initButtons() {
 	GICR |= (1 << INT0);
 	MCUCR |= (1 << ISC01);
 	MCUCR |= (1 << ISC00);
-
-	DDRA |= (1<< PA7);
 }
-
-int state = 0;
 
 ISR(INT0_vect) {
 	if (game != NULL) {
@@ -125,12 +121,6 @@ ISR(INT0_vect) {
 			buttons->C = CHECK_BIT(BUTTONS_PIN,  BUTTON_C);
 			buttons->D = CHECK_BIT(BUTTONS_PIN,  BUTTON_D);
 		});
-	}
-
-	if (state++ % 2 == 0) {
-		PORTA |= (1<< PA7);
-	} else {
-		PORTA &= ~(1<< PA7);
 	}
 }
 

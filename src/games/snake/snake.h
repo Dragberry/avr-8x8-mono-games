@@ -18,7 +18,6 @@ private:
 	SnakeSection* body;
 	SnakeSection tail;
 
-
 public:
 	Snake(uint8_t fieldHeight, uint8_t fieldWidth, uint8_t initLength, Direction direction);
 	~Snake();
@@ -33,6 +32,7 @@ public:
 	uint16_t getLength();
 	SnakeSection* getHead();
 	SnakeSection* getTail();
+	bool isAlive();
 };
 
 #endif

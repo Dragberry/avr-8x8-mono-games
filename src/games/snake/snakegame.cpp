@@ -8,6 +8,7 @@ SnakeGame::SnakeGame(uint8_t height, uint8_t width) {
 	this->width = width;
 	this->snake = new Snake(height, width, 4, Direction::Right);
 	this->food = NULL;
+	this->state = true;
 }
 
 SnakeGame::~SnakeGame() {
@@ -16,7 +17,7 @@ SnakeGame::~SnakeGame() {
 }
 
 bool SnakeGame::isGoingOn() {
-	return snake->getLength() < 10;
+	return state && snake->getLength() < 10;
 }
 
 void SnakeGame::onAction() {
@@ -40,14 +41,18 @@ void SnakeGame::placeFood() {
 }
 
 void SnakeGame::increment() {
-//	if (time % 5  == 0) {
-//		if (rand() % 2 == 0) {
-//			snake->turnRight();
-//		} else {
-//			snake->turnLeft();
-//		}
-//	}
+	if (time % (rand() % 5 == 0)  == 0) {
+		if (rand() % 2 == 0) {
+			snake->turnRight();
+		} else {
+			snake->turnLeft();
+		}
+	}
 	snake->move();
+	if (!snake->isAlive()) {
+		state = false;
+		return;
+	}
 	if (food == NULL || snake->eat(*food)) {
 		placeFood();
 	}

@@ -110,3 +110,12 @@ SnakeSection* Snake::getHead() {
 SnakeSection* Snake::getTail() {
 	return &tail;
 }
+
+bool Snake::isAlive() {
+	for (uint8_t n = 1; n < length; n++) {
+		if (body[n].x == body[0].x && body[n].y == body[0].y) {
+			return false;
+		}
+	}
+	return true;
+}

@@ -15,6 +15,8 @@ private:
 	Snake* snake;
 	Food* food;
 
+	bool state;
+
 	void placeFood();
 
 protected:
