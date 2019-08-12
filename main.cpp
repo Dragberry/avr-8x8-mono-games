@@ -1,7 +1,6 @@
 #include <stdint.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <avr/delay.h>
 
 #include "src/device/screen.h"
 #include "src/games/game.h"
@@ -119,7 +118,6 @@ void initButtons() {
 int state = 0;
 
 ISR(INT0_vect) {
-//	_delay_ms(500);
 	if (game != NULL) {
 		game->setButtonState([](Game::Buttons* buttons) {
 			buttons->A = CHECK_BIT(BUTTONS_PIN,  BUTTON_A);
@@ -169,7 +167,7 @@ ISR(TIMER0_COMP_vect) {
 }
 
 void initGameTimer() {
-	TCCR1B |= (1 << WGM12) | (1 << CS12) | (0 << CS11) | (1 << CS10);
+	TCCR1B |= (1 << WGM12) | (1 << CS12) | (0 << CS11) | (0 << CS10);
 	TIMSK |= (1 << OCIE1A);
 	OCR1A = 0xC35;
 }
